@@ -1,0 +1,707 @@
+/* Inter — MUST be the first rule in the file or the browser drops the @import. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Utility classes used by Heroicons (Tailwind-like sizing) */
+.w-4 { width: 1rem; }
+.h-4 { height: 1rem; }
+.w-5 { width: 1.25rem; }
+.h-5 { height: 1.25rem; }
+.w-6 { width: 1.5rem; }
+.h-6 { height: 1.5rem; }
+.w-7 { width: 1.75rem; }
+.h-7 { height: 1.75rem; }
+.w-8 { width: 2rem; }
+.h-8 { height: 2rem; }
+.w-10 { width: 2.5rem; }
+.h-10 { height: 2.5rem; }
+.w-12 { width: 3rem; }
+.h-12 { height: 3rem; }
+
+svg.w-4 { width: 1rem; }
+svg.h-4 { height: 1rem; }
+svg.w-5 { width: 1.25rem; }
+svg.h-5 { height: 1.25rem; }
+svg.w-6 { width: 1.5rem; }
+svg.h-6 { height: 1.5rem; }
+
+/* ==========================================================================
+   bondoo — Apple Design System (locked to Design.md)
+   Single source of truth. Change a value HERE, not in the rules below.
+   ========================================================================== */
+
+:root {
+    color-scheme: light dark; /* native controls + scrollbars follow OS theme */
+
+    /* Color — light (Design.md `colors`) */
+    --apple-primary:    #0071e3;
+    --apple-secondary:  #1d1d1f;
+    --apple-bg:         #ffffff;
+    --apple-surface:    #f5f5f7;
+    --apple-fg:         #1d1d1f;
+    --apple-border:     #d2d2d7;
+    --apple-accent:     #86868b;
+    --apple-light:      #f5f5f7; /* fixed near-white for always-dark surfaces (login) — does not flip with theme */
+    --apple-success:    #34c759;
+    --apple-info:       #0066cc;
+    --apple-warning:    #ff9500;
+    --apple-danger:     #ff3b30;
+
+    /* Interactive tints derived from the single accent */
+    --apple-primary-08: rgba(0, 113, 227, 0.08);
+    --apple-primary-04: rgba(0, 113, 227, 0.04);
+    --apple-focus-ring: rgba(0, 113, 227, 0.25);
+
+    /* Glass (Design.md surface hierarchy) */
+    --glass-light: rgba(255, 255, 255, 0.8);
+    --glass-dark:  rgba(0, 0, 0, 0.8);
+    --glass-blur:  20px;
+
+    /* Typography — Design.md `typography` */
+    --font-display: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-text:    'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    --fs-display-lg: 56px;
+    --fs-heading-md: 40px;
+    --fs-tile:       28px;
+    --fs-card-title: 21px;
+    --fs-body:       17px;
+    --fs-label:      14px;
+    --fs-caption:    12px;
+
+    --fw-regular:  400;
+    --fw-medium:   500;
+    --fw-semibold: 600;
+    --fw-bold:     700; /* Design.md: never 800/900 */
+
+    /* Precision letter-spacing, applied at all sizes */
+    --tracking: -0.022em;
+
+    /* Spacing — Design.md `spacing` (2px base) */
+    --space-xs: 2px;
+    --space-sm: 4px;
+    --space-md: 8px;
+    --space-lg: 16px;
+    --space-xl: 24px;
+
+    /* Radius — Design.md `rounded` + shapes table */
+    --radius-sm:   5px;
+    --radius-md:   8px;
+    --radius-lg:   11px;
+    --radius-xl:   12px;
+    --radius-pill: 980px;
+    --radius-full: 9999px;
+
+    /* Elevation — Design.md is sparing with shadow */
+    --shadow-card: 3px 5px 30px rgba(0, 0, 0, 0.22);
+    --shadow-card-soft: 3px 5px 30px rgba(0, 0, 0, 0.08);
+    --transition: all 0.2s ease;
+}
+
+/* Dark palette (Design.md `colors-dark`) is applied OS-auto via
+   @media (prefers-color-scheme: dark) at the bottom of this file. */
+
+/* --- Base typography ---------------------------------------------------- */
+body,
+h1, h2, h3, h4, h5, h6,
+.logo-title, .iq-sidebar-logo h5 {
+    font-family: var(--font-text) !important;
+    letter-spacing: var(--tracking) !important;
+}
+
+h1, h2, h3, .h1, .h2, .h3 {
+    font-family: var(--font-display) !important;
+    font-weight: var(--fw-semibold);
+}
+
+/* Lock Inter on text-bearing controls (theme ships Lato). Scoped away from
+   <i>/icon-font elements so glyph fonts keep rendering. */
+.btn, .form-control, .badge, .alert, .nav-link,
+input, select, textarea, table, .table {
+    font-family: var(--font-text) !important;
+}
+
+/* --- Buttons ----------------------------------------------------------- */
+/* Primary CTA — the single chromatic accent */
+.btn-primary {
+    background: var(--apple-primary) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: var(--radius-md) !important;
+    padding: 10px var(--space-xl) !important;
+    font-weight: var(--fw-medium) !important;
+    letter-spacing: -0.015em;
+    box-shadow: none !important;
+    transition: var(--transition) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background: var(--apple-primary) !important;
+    opacity: 0.88 !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Secondary — near-black */
+.btn-secondary {
+    background: var(--apple-secondary) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: var(--radius-md) !important;
+    padding: 10px var(--space-xl) !important;
+    font-weight: var(--fw-medium) !important;
+    letter-spacing: -0.015em;
+    box-shadow: none !important;
+    transition: var(--transition) !important;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
+    background: var(--apple-secondary) !important;
+    opacity: 0.88 !important;
+}
+
+/* Pill link — capsule, colored border, transparent ground */
+.btn-pill {
+    border-radius: var(--radius-pill) !important;
+    background: transparent !important;
+    border: 1px solid var(--apple-primary) !important;
+    color: var(--apple-primary) !important;
+    padding: 6px var(--space-lg) !important;
+    font-weight: var(--fw-medium) !important;
+    transition: var(--transition) !important;
+}
+
+.btn-pill:hover {
+    background: var(--apple-primary-08) !important;
+}
+
+/* Strict single-accent (Design.md): neutral actions -> near-black, destructive
+   stays red, blue reserved for primary. Status colors live on badges/alerts, not buttons. */
+.btn-success, .btn-warning, .btn-info, .btn-dark {
+    background: var(--apple-secondary) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: none !important;
+    transition: var(--transition) !important;
+}
+.btn-success:hover, .btn-warning:hover, .btn-info:hover, .btn-dark:hover,
+.btn-success:focus, .btn-warning:focus, .btn-info:focus, .btn-dark:focus {
+    background: var(--apple-secondary) !important;
+    color: #ffffff !important;
+    opacity: 0.88 !important;
+}
+
+/* Light neutral button -> Apple surface, dark text (no chromatic accent) */
+.btn-light {
+    background: var(--apple-surface) !important;
+    color: var(--apple-fg) !important;
+    border: none !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: none !important;
+    transition: var(--transition) !important;
+}
+.btn-light:hover, .btn-light:focus { opacity: 0.88 !important; }
+
+/* Destructive keeps red as a safety affordance */
+.btn-danger {
+    background: var(--apple-danger) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: none !important;
+    transition: var(--transition) !important;
+}
+.btn-danger:hover, .btn-danger:focus {
+    background: var(--apple-danger) !important;
+    opacity: 0.88 !important;
+}
+
+/* Outline variants: neutral -> near-black outline, destructive -> red outline */
+.btn-outline-secondary, .btn-outline-success, .btn-outline-info, .btn-outline-warning {
+    background: transparent !important;
+    color: var(--apple-secondary) !important;
+    border: 1px solid var(--apple-secondary) !important;
+    border-radius: var(--radius-md) !important;
+    transition: var(--transition) !important;
+}
+.btn-outline-secondary:hover, .btn-outline-success:hover,
+.btn-outline-info:hover, .btn-outline-warning:hover {
+    background: var(--apple-secondary) !important;
+    color: #ffffff !important;
+}
+.btn-outline-danger {
+    background: transparent !important;
+    color: var(--apple-danger) !important;
+    border: 1px solid var(--apple-danger) !important;
+    border-radius: var(--radius-md) !important;
+    transition: var(--transition) !important;
+}
+.btn-outline-danger:hover {
+    background: var(--apple-danger) !important;
+    color: #ffffff !important;
+}
+
+/* --- Typography & Text Utility Overrides ------------------------------- */
+.text-dark {
+    color: var(--apple-fg) !important;
+}
+.text-secondary, .text-muted {
+    color: var(--apple-accent) !important;
+}
+
+/* --- Inputs ------------------------------------------------------------ */
+.form-control,
+.floating-input {
+    border-radius: var(--radius-md) !important;
+    border: 1px solid var(--apple-border) !important;
+    background: var(--apple-bg) !important;
+    color: var(--apple-fg) !important;
+    transition: var(--transition) !important;
+}
+
+.form-control:focus,
+.floating-input:focus {
+    border-color: var(--apple-primary) !important;
+    box-shadow: 0 0 0 3px var(--apple-focus-ring) !important;
+}
+
+select.form-control, select {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2386868b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 1rem center !important;
+    background-size: 1.25em !important;
+    padding-right: 2.5rem !important;
+}
+
+.floating-label label {
+    transition: var(--transition) !important;
+}
+
+/* --- Input Group & Search Box alignment --------------------------------- */
+.input-group:has(.select2-container) {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+}
+.input-group > .select2-container--default {
+    width: 0 !important;
+    flex-grow: 1 !important;
+}
+.input-group > .select2-container--default .select2-selection--single {
+    height: 45px !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-right: none !important;
+}
+.input-group > .input-group-append {
+    display: flex !important;
+}
+.input-group > .input-group-append > .btn {
+    height: 45px !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-right-radius: var(--radius-md) !important;
+    border-bottom-right-radius: var(--radius-md) !important;
+    border: 1px solid var(--apple-border) !important;
+    background-color: var(--apple-surface) !important;
+    color: var(--apple-primary) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 16px !important;
+    margin-left: -1px !important;
+}
+.input-group > .input-group-append > .btn:hover {
+    background-color: var(--apple-primary-08) !important;
+    border-color: var(--apple-primary) !important;
+}
+
+.input-group > .form-control {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+.input-group-text {
+    border-color: var(--apple-border) !important;
+    background-color: var(--apple-surface) !important;
+    color: var(--apple-fg) !important;
+}
+.input-group-text.bg-primary {
+    background-color: var(--apple-primary) !important;
+    border-color: var(--apple-primary) !important;
+    color: #ffffff !important;
+}
+.input-group-text.bg-danger {
+    background-color: var(--apple-danger) !important;
+    border-color: var(--apple-danger) !important;
+    color: #ffffff !important;
+}
+.input-group > .input-group-append > .input-group-text,
+.input-group > .input-group-append > .btn {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-right-radius: var(--radius-md) !important;
+    border-bottom-right-radius: var(--radius-md) !important;
+}
+.input-group > .input-group-prepend > .input-group-text,
+.input-group > .input-group-prepend > .btn {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-top-left-radius: var(--radius-md) !important;
+    border-bottom-left-radius: var(--radius-md) !important;
+}
+
+/* --- Cards: elevated gray surface, no border, soft hover shadow -------- */
+.card, .card-block {
+    background-color: var(--apple-surface) !important;
+    border: none !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: none !important;
+    transition: box-shadow 0.3s ease, transform 0.2s ease !important;
+}
+
+.card:hover, .card-block:hover {
+    box-shadow: var(--shadow-card-soft) !important;
+}
+
+.card-header {
+    border-top-left-radius: inherit !important;
+    border-top-right-radius: inherit !important;
+    border-bottom: none !important;
+}
+
+/* --- Sidebar ----------------------------------------------------------- */
+.iq-sidebar {
+    background-color: var(--apple-surface) !important;
+    border-right: none !important;
+    box-shadow: none !important;
+}
+
+.iq-sidebar-logo {
+    border-bottom: none !important;
+    background-color: var(--apple-surface) !important;
+}
+
+.iq-sidebar-logo h5 {
+    color: var(--apple-fg) !important;
+    font-weight: var(--fw-semibold);
+    letter-spacing: -0.02em;
+}
+
+.iq-sidebar-menu .iq-menu li a {
+    border-radius: var(--radius-md);
+    margin: var(--space-xs) var(--space-md);
+    color: var(--apple-fg) !important;
+    transition: var(--transition) !important;
+}
+
+.iq-sidebar-menu .iq-menu li a:hover {
+    color: var(--apple-primary) !important;
+    background: var(--apple-primary-04) !important;
+}
+
+.iq-sidebar-menu .iq-menu li.active > a {
+    background: var(--apple-primary-08) !important;
+    color: var(--apple-primary) !important;
+    border-left: none !important;
+    border-radius: var(--radius-md);
+    margin: var(--space-xs) var(--space-md);
+}
+
+/* --- Navbar: translucent glass ---------------------------------------- */
+.iq-top-navbar {
+    background: var(--glass-light) !important;
+    backdrop-filter: blur(var(--glass-blur)) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) !important;
+    border-bottom: 1px solid var(--apple-border) !important;
+}
+
+.logo-title {
+    color: var(--apple-primary) !important;
+    font-weight: var(--fw-bold);
+}
+
+/* --- Badges: pill, small, uppercase ------------------------------------ */
+.badge {
+    border-radius: var(--radius-full) !important;
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    padding: 0.35em 0.7em;
+}
+
+.badge-success, .bg-success { background-color: var(--apple-success) !important; }
+.badge-warning, .bg-warning { background-color: var(--apple-warning) !important; }
+.badge-danger,  .bg-danger  { background-color: var(--apple-danger) !important; }
+.badge-primary, .bg-primary { background-color: var(--apple-primary) !important; }
+
+/* --- Alerts: 4px left accent stripe, no full border -------------------- */
+.alert {
+    border: none !important;
+    border-left: 4px solid var(--apple-accent) !important;
+    border-radius: var(--radius-md) !important;
+}
+.alert-success { border-left-color: var(--apple-success) !important; }
+.alert-warning { border-left-color: var(--apple-warning) !important; }
+.alert-danger  { border-left-color: var(--apple-danger) !important; }
+.alert-info    { border-left-color: var(--apple-info) !important; }
+
+/* --- Progress bars: 6px pill track, accent fill ------------------------ */
+.progress {
+    height: 6px !important;
+    border-radius: var(--radius-full) !important;
+    background-color: var(--apple-surface) !important;
+}
+.progress-bar {
+    background-color: var(--apple-primary) !important;
+    border-radius: var(--radius-full) !important;
+}
+
+/* Tables: near-black headers (theme ships navy), light surface header row */
+.table thead th {
+    color: var(--apple-fg) !important;
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking);
+    border-bottom: 1px solid var(--apple-border) !important;
+}
+
+/* Semantic text locked to tokens so it flips correctly in dark mode */
+.text-primary { color: var(--apple-primary) !important; }
+.text-success { color: var(--apple-success) !important; }
+.text-danger  { color: var(--apple-danger) !important; }
+.text-warning { color: var(--apple-warning) !important; }
+.text-info    { color: var(--apple-info) !important; }
+
+/* ==========================================================================
+   Login / auth screen — pure-black canvas + dark glass card
+   ========================================================================== */
+.login-content {
+    background: #000000 !important;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-content::before {
+    content: '';
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, var(--apple-primary-08) 0%, rgba(0, 0, 0, 0) 70%);
+    top: -200px;
+    right: -200px;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.login-content .auth-card {
+    background: rgba(29, 29, 31, 0.72) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: var(--radius-xl) !important;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6) !important;
+    overflow: hidden;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.login-content .auth-card:hover {
+    transform: translateY(-2px);
+}
+
+.login-content .auth-card label,
+.login-content .auth-card h2,
+.login-content .auth-card p,
+.login-content .auth-card span {
+    color: var(--apple-light) !important;
+}
+
+.login-content .auth-card .auth-content {
+    padding: 2.5rem !important;
+}
+
+.login-content .floating-input {
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+}
+
+.login-content .floating-input:focus {
+    border-color: var(--apple-primary) !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.3) !important;
+}
+
+.login-content .floating-label label {
+    color: var(--apple-accent) !important;
+}
+
+.login-content .floating-input:focus ~ label,
+.login-content .floating-input:not(:placeholder-shown) ~ label {
+    color: var(--apple-primary) !important;
+    background: #252528 !important;
+    font-size: 11px !important;
+    padding: 1px 6px !important;
+    border-radius: var(--radius-sm) !important;
+}
+
+/* --- Scrollbar --------------------------------------------------------- */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--apple-border);
+    border-radius: var(--radius-sm);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--apple-accent);
+}
+/* --- Footer styling: clear background clash and improve contrast --------- */
+.iq-footer {
+    background: transparent !important;
+}
+.iq-footer ul li a {
+    color: var(--apple-accent) !important;
+    transition: var(--transition);
+}
+.iq-footer ul li a:hover {
+    color: var(--apple-primary) !important;
+}
+.iq-footer, .iq-footer span, .iq-footer a {
+    color: var(--apple-fg);
+}
+
+/* ==========================================================================
+   Dark mode — OS-auto (prefers-color-scheme). Flips tokens to Design.md
+   colors-dark. Token-driven rules above (cards, sidebar, inputs, badges,
+   primary/danger buttons) follow automatically; the rules here cover the
+   surfaces backend.css paints light directly.
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --apple-primary:    #2997ff;
+        --apple-secondary:  #f5f5f7;
+        --apple-bg:         #000000;
+        --apple-surface:    #272729;
+        --apple-fg:         #f5f5f7;
+        --apple-border:     #333336;
+        --apple-accent:     #98989d;
+        --apple-success:    #30d158;
+        --apple-info:       #2997ff;
+        --apple-warning:    #ffd60a;
+        --apple-danger:     #ff453a;
+        --apple-primary-08: rgba(41, 151, 255, 0.14);
+        --apple-primary-04: rgba(41, 151, 255, 0.07);
+        --apple-focus-ring: rgba(41, 151, 255, 0.35);
+    }
+
+    /* Page canvas + default copy */
+    body, .wrapper, .content-page, .iq-sidebar-menu {
+        background-color: var(--apple-bg) !important;
+        color: var(--apple-fg) !important;
+    }
+
+    /* White/light surfaces -> elevated dark */
+    .bg-white, .bg-light,
+    .card, .card-block, .iq-card,
+    .modal-content, .dropdown-menu, .list-group-item {
+        background-color: var(--apple-surface) !important;
+        color: var(--apple-fg) !important;
+    }
+
+    /* Near-black copy -> light; muted grays -> accent (blue & semantic untouched) */
+    h1, h2, h3, h4, h5, h6, p, label, li, dt, dd,
+    .text-dark, .text-black, .text-body, .text-secondary, .card-title {
+        color: var(--apple-fg) !important;
+    }
+    .text-muted,
+    .text-gray-500, .text-gray-600, .text-gray-700, .text-gray-800, .text-gray-900 {
+        color: var(--apple-accent) !important;
+    }
+
+    /* Tables — target td/th directly (theme sets cell color on td, which beats
+       inherited color from .table). */
+    .table, .table td, .table th, .table tbody tr {
+        color: var(--apple-fg) !important;
+    }
+    .table td, .table th { border-color: var(--apple-border) !important; }
+    .table thead th { background-color: var(--apple-surface) !important; }
+    .table-striped tbody tr:nth-of-type(odd) { background-color: rgba(255, 255, 255, 0.03) !important; }
+    .table-hover tbody tr:hover { background-color: var(--apple-primary-08) !important; }
+
+    .form-control, select, textarea, .search-input, .searchbox {
+        background-color: var(--apple-surface) !important;
+        color: var(--apple-fg) !important;
+        border-color: var(--apple-border) !important;
+    }
+    .form-control::placeholder, .search-input::placeholder { color: var(--apple-accent) !important; }
+    select.form-control, select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2398989d'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E") !important;
+    }
+
+    /* Navigation: dark glass + light menu text */
+    .iq-top-navbar {
+        background: var(--glass-dark) !important;
+        border-bottom-color: var(--apple-border) !important;
+    }
+    .iq-sidebar-menu .iq-menu li a { color: var(--apple-fg) !important; }
+
+    /* Dropdown items */
+    .dropdown-item { color: var(--apple-fg) !important; }
+    .dropdown-item:hover, .dropdown-item:focus {
+        background-color: var(--apple-primary-08) !important;
+        color: var(--apple-primary) !important;
+    }
+
+    /* Hairlines */
+    .border, .border-top, .border-bottom, .border-left, .border-right {
+        border-color: var(--apple-border) !important;
+    }
+
+    /* Neutral buttons: --apple-secondary flips to near-white, so re-pin them to
+       an elevated dark surface with light text to stay legible. */
+    .btn-secondary, .btn-success, .btn-warning, .btn-info, .btn-dark, .btn-light {
+        background: var(--apple-surface) !important;
+        color: var(--apple-fg) !important;
+    }
+    .btn-outline-secondary, .btn-outline-success, .btn-outline-info, .btn-outline-warning {
+        color: var(--apple-fg) !important;
+        border-color: var(--apple-border) !important;
+    }
+
+    /* Select2 renders its own white widgets (appended to <body>, outside the
+       theme). Without this its dropdown stays white while the global text
+       override paints options light -> invisible. */
+    .select2-container--default .select2-selection--single,
+    .select2-container--default .select2-selection--multiple,
+    .select2-dropdown,
+    .select2-search__field {
+        background-color: var(--apple-surface) !important;
+        border-color: var(--apple-border) !important;
+        color: var(--apple-fg) !important;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        color: var(--apple-fg) !important;
+    }
+    .select2-results__option {
+        background-color: var(--apple-surface) !important;
+        color: var(--apple-fg) !important;
+    }
+    .select2-container--default .select2-results__option--highlighted[aria-selected] {
+        background-color: var(--apple-primary) !important;
+        color: #ffffff !important;
+    }
+}
