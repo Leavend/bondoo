@@ -83,8 +83,3 @@ Access the SuperAdmin dashboard with:
 
 ---
 
-## 📄 License
-This project is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
----
-*Note: bondoo is developed as an upgraded fork of the [fajarghifar/laravel-point-of-sale](https://github.com/fajarghifar/laravel-point-of-sale) codebase.*
